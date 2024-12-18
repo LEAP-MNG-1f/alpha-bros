@@ -34,7 +34,7 @@ const createPlaces = async (req, response) => {
       files.map((file) =>
         cloudinary.uploader.upload(file.path, {
           folder: "places",
-          transformation: [{ quality: "auto", fetch_ormat: "auto" }],
+          transformation: [{ quality: "auto", fetch_format: "auto" }],
         })
       )
     );
@@ -210,7 +210,6 @@ const deletePlaces = async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 };
-
 
 export {
   createPlaces,

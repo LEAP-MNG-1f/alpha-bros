@@ -13,12 +13,13 @@ const orderSchema = new mongoose.Schema({
   },
   process: {
     type: String,
-    enum: ["active", "deactivate"],
-    default: "active",
+    enum: ["Батлагдсан", "Цуцлагдсан", "Хүлээгдэж Байна"],
+    default: "Батлагдсан",
   },
   placeId: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Places",
+    required: true,
   },
 
   orderDate: {

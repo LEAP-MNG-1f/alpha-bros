@@ -40,11 +40,23 @@ const getSelectedUsersOrder = async (req, res) => {
 
 const getAllOrder = async (req, res) => {
   try {
-    const result = await Order.find();
+    const result = await Order.find().populate("userId").populate("placeId");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
 };
 
-export { createOrder, getAllOrder, getSelectedUsersOrder };
+const changeOrderRole = async (req, res) => {
+  try {
+    const { orderId, newProcess } = req.body;
+    const result = await Order.findByIdAndUpdate(orderId, {
+      process: newProcess,
+    });
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+export { createOrder, getAllOrder, getSelectedUsersOrder, changeOrderRole };
