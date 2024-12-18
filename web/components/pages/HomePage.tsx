@@ -33,7 +33,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="w-screen flex flex-col absolute top-0 right-0">
+    <div className="w-screen flex flex-col">
       <Hero />
       <CategorySection categories={categories} />
       <RecommendedSpaces data={fetchData} />

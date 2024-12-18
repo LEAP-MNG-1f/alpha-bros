@@ -1,5 +1,6 @@
 "use client";
 
+import { districts } from "@/constant/mockdatas";
 import { TPlaces } from "@/types/DataTypes";
 import {
   BookOpenTextIcon,
@@ -67,13 +68,13 @@ const MainCard = (data: TPlaces) => {
       </div>
       <div className="bg-MainColor p-4 w-[300px] h-[200px] flex flex-col gap-4 text-MainWhite rounded-b-xl">
         <div className="flex flex-col border-b border-white">
-          <p className="text-2xl">{data.name}</p>
+          <p className="text-2xl line-clamp-1">{data.name}</p>
           <div>
             <div className="flex gap-2 items-center">
               <div>
                 <BookOpenTextIcon size={16} />
               </div>
-              <span className="line-clamp-2">{data.description}</span>
+              <span className="line-clamp-1">{data.description}</span>
             </div>
           </div>
         </div>
@@ -81,7 +82,11 @@ const MainCard = (data: TPlaces) => {
           <div className="flex items-center justify-center gap-1 border-b border-MainWhite ">
             <MapPinIcon size={16} />
             <p className="text-MainWhite line-clamp-1">
-              {data.location?.district}
+              {districts.map((district) => {
+                return (
+                  data.location?.district == district.idName && district.name
+                );
+              })}
             </p>
           </div>
           <div className="flex items-center justify-center gap-1 border-b border-MainWhite ">

@@ -1,5 +1,3 @@
-import { TCategories, TLocation, TPlaces, TWeekhours } from "@/types/DataTypes";
-
 export const BACKEND_ENDPOINT = "http://localhost:8000";
 
 export const FooterData = {
