@@ -3,6 +3,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -12,6 +13,7 @@ export const Order = ({ placeId }: { placeId: string }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [time, setTime] = useState<string>("");
   const currentUser = useAuth();
+  const router = useRouter();
   const handleOrderSubmit = async () => {
     if (!currentUser.isSignedIn) {
       toast("Please sign in");
@@ -52,6 +54,7 @@ export const Order = ({ placeId }: { placeId: string }) => {
         toast(
           `Захиалга амжилттай: ${date.toLocaleDateString()} - ${people} хүн - ${time}`
         );
+        router.push("/order");
         return;
       }
       if (response.status == 404) {
