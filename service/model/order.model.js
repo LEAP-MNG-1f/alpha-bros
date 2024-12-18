@@ -25,6 +25,7 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+
   people: {
     type: String,
     required: true,
