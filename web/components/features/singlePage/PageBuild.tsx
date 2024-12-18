@@ -41,7 +41,7 @@ export const PageBuild = ({ place }: TSinglePageProps) => {
               </Swiper>
             </div>
             <div className="row-end-1 rounded-lg overflow-hidden">
-              <PlaceMap />
+              <PlaceMap key={data?._id} place={data} />
             </div>
             <div className="row-span-2">
               <Order placeId={data._id} />
