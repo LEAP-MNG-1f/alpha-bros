@@ -53,16 +53,16 @@ const MainCard = (data: TPlaces) => {
 
   const imageUrl = data?.image[0];
   return (
-    <div className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden">
+    <div className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden ">
       <div className="rounded-xl w-full h-full relative">
-        <img
-          src={imageUrl} // Fallback image
+        <Image
+          src={imageUrl}
           alt={"Image"}
           style={{
-            backgroundPosition: "center",
-            width: "300px",
-            height: "330px",
+            objectFit: "cover",
+            objectPosition: "center",
           }}
+          fill
         />
       </div>
       <div className="bg-MainColor p-4 w-[300px] h-[200px] flex flex-col gap-4 text-MainWhite rounded-b-xl">
