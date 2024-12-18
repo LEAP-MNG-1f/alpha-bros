@@ -40,3 +40,12 @@ export type TPlaces = {
   location: TLocation;
   workingHours: TWeekhours;
 };
+
+export type TOrderType = {
+  _id: string;
+  orderDate: string;
+  process: string;
+  placeId: string;
+  people: string;
+  userId: string;
+};
