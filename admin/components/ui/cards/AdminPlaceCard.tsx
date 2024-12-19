@@ -31,8 +31,8 @@ export const AdminPlaceCard = (data: TPlaces) => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col gap-2 justify-center items-center">
-        <div className="flex items-center">
+      <div className="flex flex-col gap-2 justify-center items-start">
+        <div className="flex items-start">
           <p className="font-Inter text-sm font-semibold not-italic leading-5 tracking-[-0.28px] ">
             Төрөл:{" "}
             <span className="text-[#121316] font-normal">
