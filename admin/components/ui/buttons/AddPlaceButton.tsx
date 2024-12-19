@@ -96,6 +96,8 @@ export const AddPlaceButton = ({
       });
     }
   };
+  console.log("lat is:", lat);
+  console.log("lng is:", lng);
 
   const validationSchema = Yup.object({
     name: Yup.string().required("ene name - iig bogoln uu"),
@@ -114,15 +116,11 @@ export const AddPlaceButton = ({
       weekendOpen: "",
       weekendClose: "",
       phoneNumber: "",
-      latitude: lat.toString(),
-      longitude: lng.toString(),
     },
     onSubmit: async (value) => {
       const requestData = {
         ...value,
       };
-
-      console.log("lat lng", lng, lat);
 
       const formData = new FormData();
       formData.append("name", requestData.name);
@@ -136,8 +134,8 @@ export const AddPlaceButton = ({
       formData.append("weekdaysClose", requestData.weekdaysClose);
       formData.append("weekendOpen", requestData.weekendOpen);
       formData.append("weekendClose", requestData.weekendClose);
-      formData.append("latitude", requestData.latitude);
-      formData.append("longitude", requestData.longitude);
+      formData.append("latitude", String(lat));
+      formData.append("longitude", String(lng));
 
       if (restDayData) {
         formData.append("closedDay", restDayData);
