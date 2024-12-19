@@ -22,14 +22,14 @@ export const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <div className="w-full text-white fixed z-[2]">
+    <div className="w-full text-black fixed z-[2] bg-white rounded-b-[50px]">
       <div className="background filter">
         <div className="mx-auto container flex justify-between  items-center py-4 w-full">
           <div className="flex gap-4 justify-start">
             {paths.map((path) => (
               <button
-                className={`px-2 py-1 not-italic font-bold text-sm ${
-                  pathname === path.path ? "text-SecondColor" : "text-white"
+                className={`px-2 py-1 text-sm not-italic font-bold leading-[16px] tracking-[-0.2px] ${
+                  pathname === path.path ? "text-SecondColor" : "text-black"
                 }`}
                 onClick={() => router.push(`${path.path}`)}
                 key={path.id}
@@ -49,7 +49,7 @@ export const Navbar = () => {
             <div className="w-[100px]"></div>
             <SignedOut>
               <SignInButton>
-                <button className="group flex border hover:border-SecondColor border-white items-center px-2 rounded-lg duration-200">
+                <button className="group flex border hover:border-SecondColor border-black items-center px-2 rounded-lg duration-200">
                   <ProfileIcon fillHover="group-hover:fill-SecondColor duration-100" />
                   <div className="p-1 rounded-md not-italic group-hover:text-SecondColor duration-200 font-bold text-sm">
                     Нэвтрэх
@@ -65,7 +65,7 @@ export const Navbar = () => {
                   elements: {
                     userButtonBox: "rounded-x px-2 py-1 rounded-md ",
                     userButtonOuterIdentifier:
-                      "not-italic font-bold text-sm text-SecondColor",
+                      "text-sm not-italic font-bold leading-[16px] tracking-[-0.3px]",
 
                     userButtonAvatarBox: "w-8 h-8",
                   },

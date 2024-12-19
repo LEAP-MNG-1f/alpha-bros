@@ -5,3 +5,4 @@ export * from "./SearchIcon";
 export * from "./PeopleIcon";
 export * from "./SeatIcon";
 export * from "./ProfileIcon";
+export * from "./ArrowIcon";
