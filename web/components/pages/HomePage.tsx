@@ -6,6 +6,7 @@ import { RecommendedSpaces } from "../features/homepage/RecommendedSpaces";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TCategories, TPlaces } from "@/types/DataTypes";
 import { WhyChoose } from "../features/homepage/WhyChoose";
+import { Loader } from "../layout/Loader";
 
 export default function HomePage() {
   const [fetchData, setFetchData] = useState<TPlaces[]>([]);
@@ -40,11 +41,7 @@ export default function HomePage() {
     fetchCategory();
   }, []);
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div className="w-screen flex flex-col">
