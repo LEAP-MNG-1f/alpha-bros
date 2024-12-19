@@ -1,7 +1,6 @@
 import { AdminOrderCard } from "@/components/ui/cards";
 import { Header } from "../Both";
 
- 
 interface Place {
   image: string[];
   name: string;
@@ -17,7 +16,7 @@ interface User {
 interface Order {
   placeId: Place;
   userId: User;
-  process: string;
+  process: "Батлагдсан" | "Цуцлагдсан" | "Хүлээгдэж Байна";
   _id: string;
   createdAt: string;
   orderDate: string;
