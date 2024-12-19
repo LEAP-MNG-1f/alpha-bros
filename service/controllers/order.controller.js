@@ -37,6 +37,20 @@ const getSelectedUsersOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const getLatestOrder = async (req, res) => {
+  try {
+    const clerkId = req.params["id"];
+    const user = await User.findOne({ clerk_id: clerkId });
+    if (!user) {
+      return res.status(404);
+    }
+    const userId = user?._id;
+    const result = await Order.findOne({ userId }).populate("placeId");
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 const getAllOrder = async (req, res) => {
   try {
@@ -59,4 +73,10 @@ const changeOrderRole = async (req, res) => {
   }
 };
 
-export { createOrder, getAllOrder, getSelectedUsersOrder, changeOrderRole };
+export {
+  createOrder,
+  getAllOrder,
+  getSelectedUsersOrder,
+  changeOrderRole,
+  getLatestOrder,
+};
