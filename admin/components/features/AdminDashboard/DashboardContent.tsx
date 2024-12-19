@@ -1,7 +1,36 @@
 import { AdminOrderCard } from "@/components/ui/cards";
 import { Header } from "../Both";
 
-export const DashboardContent = () => {
+ 
+interface Place {
+  image: string[];
+  name: string;
+  phoneNumber: string;
+}
+
+interface User {
+  emails: string;
+  first_name: string;
+  last_name: string;
+}
+
+interface Order {
+  placeId: Place;
+  userId: User;
+  process: string;
+  _id: string;
+  createdAt: string;
+  orderDate: string;
+  people: string;
+  __v: number;
+}
+
+interface DashboardContentProps {
+  orderData: Order[];
+}
+export const DashboardContent: React.FC<DashboardContentProps> = ({
+  orderData,
+}) => {
   return (
     <main className="w-full h-[90%] pb-3">
       <Header />
@@ -39,26 +68,9 @@ export const DashboardContent = () => {
           </div>
           <div className="bg-MainWhite px-6 pt-2 w-full h-[85%] overflow-hidden">
             <div className="flex flex-col gap-6 w-full h-[100%] overflow-scroll">
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
-              <AdminOrderCard />
+              {orderData.map((order) => (
+                <AdminOrderCard key={order._id} order={order} />
+              ))}
             </div>
           </div>
         </div>
