@@ -28,7 +28,7 @@ export const Navbar = () => {
           <div className="flex gap-4 justify-start">
             {paths.map((path) => (
               <button
-                className={`px-2 py-1 text-sm not-italic font-bold leading-[16px] tracking-[-0.2px] ${
+                className={`hover:text-SecondColor duration-200 px-2 py-1 text-base not-italic font-bold leading-[16px] tracking-[-0.2px] ${
                   pathname === path.path ? "text-SecondColor" : "text-black"
                 }`}
                 onClick={() => router.push(`${path.path}`)}
@@ -53,7 +53,7 @@ export const Navbar = () => {
               <SignInButton>
                 <button className="group flex border hover:border-SecondColor border-black items-center px-2 rounded-lg duration-200">
                   <ProfileIcon fillHover="group-hover:fill-SecondColor duration-100" />
-                  <div className="p-1 rounded-md not-italic group-hover:text-SecondColor duration-200 font-bold text-sm">
+                  <div className="p-1 rounded-md not-italic group-hover:text-SecondColor duration-200 font-bold text-base">
                     Нэвтрэх
                   </div>
                 </button>
