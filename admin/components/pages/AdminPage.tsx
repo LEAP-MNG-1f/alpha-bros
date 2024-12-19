@@ -9,8 +9,12 @@ import { useIdContext } from "../context/Context";
 const AdminPage = () => {
   const [placesData, setPlacesData] = useState<TPlaces[]>([]);
   const [categoryData, setCategoryData] = useState<TCategories[]>([]);
-  const BACKEND_END_POINT = process.env.BACKEND_URL;
   const [dataEffect, setDataEffect] = useState<boolean>(false);
+
+  const BACKEND_END_POINT = process.env.BACKEND_URL;
+
+  console.log(placesData, " placesData");
+
   const { deletedId } = useIdContext();
 
   const fatchData = async () => {
