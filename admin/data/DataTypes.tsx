@@ -108,3 +108,14 @@ export type TContextType = {
   deletedId: string;
   setDeletedId: Dispatch<SetStateAction<string>>;
 };
+
+export type orderType = {
+  _id: string;
+  createdAt: string;
+  orderDate: string;
+  people: string;
+  placeId: string;
+  process: string;
+  userId: string;
+  __v: number;
+};
