@@ -11,7 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "6.9.0",
     "@emailjs/browser": "4.4.1",
-    "@googlemaps/markerclusterer": "2.5.3",
+    "@googlemaps/markerclusterer": "^2.5.3",
     "@radix-ui/react-select": "2.1.2",
     "@radix-ui/react-slot": "1.1.1",
     "@radix-ui/react-toast": "1.2.3",
