@@ -5,7 +5,7 @@ import { TPlaces } from "@/types/DataTypes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Places } from "../features/categorysinglepage/Places";
-import { Map } from "../features/categorysinglepage/Map";
+import { CategoryMap } from "../features/categorysinglepage/CategoryMap";
 
 export default function CategoryPage() {
   const [data, setData] = useState<TPlaces[]>([]);
@@ -30,7 +30,7 @@ export default function CategoryPage() {
     <main className="w-screen flex  justify-center">
       <div className="max-w-screen-xl container grid grid-cols-2 gap-4">
         <Places data={data} />
-        <Map />
+        <CategoryMap places={data} />
       </div>
     </main>
   );
