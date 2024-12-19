@@ -9,14 +9,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
-import { TPlaces } from "@/types/DataTypes";
+import { TOrderType, TPlaces } from "@/types/DataTypes";
 
 export default function OrderPage() {
-  const [orderData, setOrderData] = useState([]);
-  const [placeData, setPlaceData] = useState([]);
+  const [orderData, setOrderData] = useState<TOrderType[]>([]);
+  const [placeData, setPlaceData] = useState<TPlaces[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [placeId, setPlaceId] = useState<string>("");
   const { userId } = useAuth();
   const router = useRouter();
 
@@ -26,9 +25,10 @@ export default function OrderPage() {
         `${BACKEND_ENDPOINT}/api/userorder/${userId}`
       );
       const result = await response.json();
-      if (result.success === true) setOrderData(result.data);
-      setPlaceId(result.data.pop().placeId);
+      setOrderData(result.data.OrderData);
+      console.log(result.data.LatestData.placeId);
 
+      setPlaceData((prev) => [...prev, result.data.LatestData.placeId]);
       toast.success("Order data loaded successfully!");
     } catch (error: any) {
       setError(error.message || "Failed to fetch order data.");
@@ -38,39 +38,14 @@ export default function OrderPage() {
     }
   };
 
-  const fetchPlaceData = async () => {
-    if (placeId === undefined) {
-      console.log("placeid", placeId);
-      return;
-    }
-
-    try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);
-      const result = await response.json();
-      const datas = result.data;
-      setPlaceData(datas);
-    } catch (error) {
-      throw new Error();
-    }
-  };
-
   useEffect(() => {
     fetchOrderData();
-    fetchPlaceData();
   }, [userId]);
 
   if (loading) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p className="text-red-500">{error}</p>
+        <p>Уншиж байна...</p>
       </div>
     );
   }
