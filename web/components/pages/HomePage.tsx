@@ -5,6 +5,7 @@ import { CategorySection } from "../features/homepage/CategorySection";
 import { RecommendedSpaces } from "../features/homepage/RecommendedSpaces";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TCategories, TPlaces } from "@/types/DataTypes";
+import { WhyChoose } from "../features/homepage/WhyChoose";
 
 export default function HomePage() {
   const [fetchData, setFetchData] = useState<TPlaces[]>([]);
@@ -50,6 +51,7 @@ export default function HomePage() {
       <Hero />
       <CategorySection categories={categories} />
       <RecommendedSpaces data={fetchData} />
+      <WhyChoose />
     </div>
   );
 }
