@@ -14,7 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { BACKEND_ENDPOINT, districts } from "@/constant/mockdatas";
+import {
+  BACKEND_ENDPOINT,
+  categoryMockData,
+  districts,
+} from "@/constant/mockdatas";
 import { TCategories } from "@/types/DataTypes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -109,7 +113,11 @@ export const Search = () => {
                       setCategory(category?.name);
                     }}
                   >
-                    {category?.name}
+                    {
+                      categoryMockData.find(
+                        (data) => data.nameId === category.name
+                      )?.name
+                    }
                   </SelectItem>
                 );
               })}
