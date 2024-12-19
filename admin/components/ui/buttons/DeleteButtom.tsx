@@ -40,7 +40,7 @@ export const DeleteButtom = ({ dataName, dateID }: DeleteButtomProps) => {
         description: "Газрын нэр таарахгүй байна",
         action: {
           label: "Хаах",
-          onClick: () => console.log("ajilah"),
+          onClick: () => {},
         },
       });
       return;
@@ -65,7 +65,7 @@ export const DeleteButtom = ({ dataName, dateID }: DeleteButtomProps) => {
           description: "Амжилттай Устгалаа",
           action: {
             label: "Хаах",
-            onClick: () => console.log("ajilah"),
+            onClick: () => {},
           },
         });
         setIsDialogOpen(false);
@@ -81,7 +81,9 @@ export const DeleteButtom = ({ dataName, dateID }: DeleteButtomProps) => {
 
   return (
     <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <AlertDialogTrigger>Устгах</AlertDialogTrigger>
+      <AlertDialogTrigger className="w-full text-start">
+        Устгах
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Газар устгах</AlertDialogTitle>

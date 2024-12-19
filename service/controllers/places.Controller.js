@@ -122,6 +122,7 @@ const getSelectedPlaces = async (req, res) => {
       res.status(200).json({ success: false, data: "Places not found" });
     }
   } catch (error) {
+    console.log("error:", error);
     res.status(500).json({
       success: false,
       error: error.message,
@@ -161,37 +162,104 @@ const updatePlaces = async (req, res) => {
   try {
     const {
       name,
-      image,
       category,
       capacity,
       description,
-      location,
       ambiance,
       weekdaysOpen,
       weekdaysClose,
       weekendOpen,
       weekendClose,
-      closedday,
+      closedDay,
+      locationId,
+      province,
+      district,
+      street,
+      latitude,
+      longitude,
     } = req.body;
 
+    const files = req.files;
+    let imageAdded = true;
+    let uploadedUrls;
+    let result;
+    if (files.length === 0) {
+      imageAdded = false;
+    }
+    if (imageAdded) {
+      const uploadResults = await Promise.all(
+        files.map((file) =>
+          cloudinary.uploader.upload(file.path, {
+            folder: "places",
+            transformation: [{ quality: "auto", fetch_format: "auto" }],
+          })
+        )
+      );
+
+      uploadedUrls = uploadResults.map((result) => result.url);
+    }
+
+    if (locationId) {
+      const updatedLocation = await Location.findByIdAndUpdate(locationId, {
+        province,
+        district,
+        street,
+        latitude,
+        longitude,
+      });
+      if (!updatedLocation) {
+        return res.status(404).json({});
+      }
+    } else {
+      return res.status(400).json();
+    }
+
     const placesId = req.params["id"];
-    const result = await Places.findByIdAndUpdate(placesId, {
-      name,
-      image,
-      category,
-      capacity,
-      description,
-      location,
-      ambiance,
-      workingHours: {
-        weekdays: { open: weekdaysOpen, close: weekdaysClose },
-        weekend: { open: weekendOpen, close: weekendClose },
-        closedday,
-      },
-    });
-    res.status(200).json({ success: true, data: result });
+    if (imageAdded) {
+      result = await Places.findByIdAndUpdate(placesId, {
+        name,
+        $push: {
+          image: { $each: uploadedUrls },
+        },
+        category,
+        capacity,
+        description,
+        ambiance,
+        workingHours: {
+          weekdays: { open: weekdaysOpen, close: weekdaysClose },
+          weekend: { open: weekendOpen, close: weekendClose },
+          closedDay,
+        },
+      });
+    } else {
+      result = await Places.findByIdAndUpdate(
+        placesId,
+        {
+          name,
+          category,
+          capacity,
+          description,
+          ambiance,
+          workingHours: {
+            weekdays: { open: weekdaysOpen, close: weekdaysClose },
+            weekend: { open: weekendOpen, close: weekendClose },
+            closedDay,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+    }
+    console.log("result is:", result);
+    if (result) {
+      return res.status(201).json({});
+    } else {
+      return res.status(404).json({});
+    }
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    console.log("error:", error);
+    return res.status(500).json({ error });
   }
 };
 
@@ -208,7 +276,7 @@ const deletePlaces = async (req, res) => {
       data: { deleteLocation, result },
     });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 

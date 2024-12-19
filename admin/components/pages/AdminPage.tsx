@@ -10,25 +10,19 @@ const AdminPage = () => {
   const [placesData, setPlacesData] = useState<TPlaces[]>([]);
   const [categoryData, setCategoryData] = useState<TCategories[]>([]);
   const [dataEffect, setDataEffect] = useState<boolean>(false);
-
   const BACKEND_END_POINT = process.env.BACKEND_URL;
-
-  console.log(placesData, " placesData");
-
   const { deletedId } = useIdContext();
-
   const fatchData = async () => {
     try {
       const response = await fetch(`${BACKEND_END_POINT}/places`);
       const responseData = await response.json();
       const data = responseData.data;
       setPlacesData(data);
+      console.log("Iam working");
     } catch (e) {
       console.log("error", e);
     }
   };
-  console.log("deletedId:", deletedId);
-
   const fetchDataCategory = async () => {
     try {
       const response = await fetch(`${BACKEND_END_POINT}/category`);

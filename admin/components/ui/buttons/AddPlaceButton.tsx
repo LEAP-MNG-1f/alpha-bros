@@ -96,9 +96,6 @@ export const AddPlaceButton = ({
       });
     }
   };
-  console.log("lat is:", lat);
-  console.log("lng is:", lng);
-
   const validationSchema = Yup.object({
     name: Yup.string().required("ene name - iig bogoln uu"),
   });
@@ -177,13 +174,20 @@ export const AddPlaceButton = ({
             description: "Газар амжилттай нэмлээ",
             action: {
               label: "Хаах",
-              onClick: () => console.log("ajilah"),
+              onClick: () => {},
             },
           });
         }
         setLoeder(false);
       } catch (error) {
-        console.log(error);
+        toast("Амжилтгүй", {
+          description: `Aлдаа :${error}`,
+          action: {
+            label: "Хаах",
+            onClick: () => {},
+          },
+        });
+        setLoeder(false);
       }
     },
   });
