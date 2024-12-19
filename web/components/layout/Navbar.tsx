@@ -14,7 +14,7 @@ const paths = [
   },
   {
     id: 2,
-    name: "Орчиноор хайх",
+    name: "Орчноор хайх",
     path: "/menu",
   },
 ];

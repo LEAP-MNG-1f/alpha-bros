@@ -1,10 +1,10 @@
 "use client";
 
 import { TCategories, TPlaces } from "@/types/DataTypes";
-import { VibeCard } from "./VibeCategoryCard";
 import MainCard from "@/components/ui/cards/MainCard";
 import { useRouter } from "next/navigation";
 import { DistributorCard } from "@/components/ui/cards/DistributorCard";
+import { currentUser } from "@clerk/nextjs/server";
 
 type TMenuProps = {
   categories: TCategories[];
@@ -13,9 +13,10 @@ type TMenuProps = {
 
 export const Menu = ({ places, categories }: TMenuProps) => {
   const router = useRouter();
+
   return (
     <main className="w-screen flex  items-center flex-col pb-10">
-      <div className=" container flex justify-center flex-col mt-[65px]">
+      <div className=" container flex justify-center flex-col mt-[100px]">
         <h1 className="text-2xl italic  sm:text-center text-left ">
           Хайж буй орчиноо сонгоно уу
         </h1>

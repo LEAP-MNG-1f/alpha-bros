@@ -16,7 +16,6 @@ export default function OrderPage() {
   const [orderData, setOrderData] = useState<TOrderType[]>([]);
   const [placeData, setPlaceData] = useState<TPlaces[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const { userId } = useAuth();
   const router = useRouter();
 
@@ -27,12 +26,10 @@ export default function OrderPage() {
       );
       const result = await response.json();
       setOrderData(result.data.OrderData);
-      console.log(result.data.LatestData.placeId);
 
       setPlaceData((prev) => [...prev, result.data.LatestData.placeId]);
       toast.success("Order data loaded successfully!");
     } catch (error: any) {
-      setError(error.message || "Failed to fetch order data.");
       toast.error(error.message || "An error occurred while fetching orders.");
     } finally {
       setLoading(false);
@@ -49,7 +46,7 @@ export default function OrderPage() {
 
   return (
     <main className="h-screen w-screen flex justify-center">
-      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
+      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4 mt-28  ">
         <div className="row-span-2">
           <OrderInformation orderData={orderData} />
         </div>
