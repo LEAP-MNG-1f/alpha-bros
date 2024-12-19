@@ -9,6 +9,9 @@ export const FooterData = {
 };
 
 export const date = new Date();
+export const today = `${date.getFullYear()}-${
+  date.getUTCMonth() + 1
+}-${date.getDate()}-ны өдөр`;
 const hour = date.getHours();
 const min = date.getMinutes();
 export const weekDay = date.getDay().toString();
@@ -54,3 +57,15 @@ export const districts: District[] = [
 ];
 
 ///////////////////////////////////////////////////////////////////////////////
+
+export function dateGenerate(e: string) {
+  const dateString = e;
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getUTCMonth() + 1;
+  const day = date.getUTCDate();
+  const hour = date.getUTCHours();
+  const minute = date.getUTCMinutes();
+  const now = `${year}-${month}-${day} ${hour}:${minute}`;
+  return now;
+}
