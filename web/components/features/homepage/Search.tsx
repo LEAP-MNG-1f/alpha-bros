@@ -71,7 +71,7 @@ export const Search = () => {
               {districts.map((discrict) => {
                 return (
                   <SelectItem
-                    className="w-[200px]  text-lg border-none font-thin leading-7  text-[#333] outline-none bg-MainWhite"
+                    className="w-[220px] text-lg border-none font-medium leading-7  text-[#333] outline-none bg-MainWhite"
                     key={`${discrict?.name}` + discrict?.id + Date.now()}
                     value={discrict?.idName}
                     onClick={() => {
@@ -88,22 +88,21 @@ export const Search = () => {
         </div>
         <div className="h-[44px] border-[0.5px] border-[#E5E7EB]"></div>
         <div className="flex items-center gap-3 py-6 px-12">
-          <FilterIcon />
-
           {/* ////////////////////// */}
+          <FilterIcon />
           <Select
             onValueChange={(value) => {
               setCategory(value);
             }}
           >
-            <SelectTrigger className="w-[200px]  text-lg  border-none font-semibold leading-7 not-italic text-[#333]  outline-none">
+            <SelectTrigger className="w-[220px] text-lg  border-none font-medium leading-7 not-italic text-[#333]  outline-none">
               <SelectValue placeholder="Орчиноо сонгоно уу" />
             </SelectTrigger>
             <SelectContent>
               {categories?.map((category) => {
                 return (
                   <SelectItem
-                    className="w-[180px]  text-lg !border-none  leading-7 not-italic text-[#222] outline-none bg-MainWhite"
+                    className="w-[180px] text-lg !border-none  leading-7 not-italic text-[#222] outline-none bg-MainWhite"
                     key={category._id}
                     value={category?.name}
                     onClick={() => {
@@ -120,12 +119,12 @@ export const Search = () => {
         </div>
         <div className="h-[44px] border-[0.5px] border-[#E5E7EB]"></div>
         {/* //////////////////////////// */}
-        <div className="flex items-center gap-3 py-6 px-4">
+        <div className="flex items-center gap-3 py-6 px-4 ">
           <GuestsIcon />
           <Input
-            className="w-16 text-[#333] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="text-[#333] w-[110px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none outline-none"
             type="number"
-            placeholder="2"
+            placeholder="Хүний тоо"
             onChange={(e) => {
               setPeopleCount(e.target.value);
             }}
