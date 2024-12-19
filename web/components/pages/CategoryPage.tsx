@@ -28,7 +28,7 @@ export default function CategoryPage() {
   }, []);
   return (
     <main className="w-screen flex  justify-center">
-      <div className="max-w-screen-xl container grid grid-cols-2 gap-4">
+      <div className="container grid grid-cols-2 gap-4">
         <Places data={data} />
         <CategoryMap places={data} />
       </div>
