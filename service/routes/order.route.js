@@ -3,6 +3,7 @@ import {
   changeOrderRole,
   createOrder,
   getAllOrder,
+  getLatestOrder,
   getSelectedUsersOrder,
 } from "../controllers/order.controller.js";
 
@@ -12,4 +13,6 @@ OrderRouter.post("/order", createOrder);
 OrderRouter.get("/order", getAllOrder);
 OrderRouter.get("/userorder/:id", getSelectedUsersOrder);
 OrderRouter.put("/order", changeOrderRole);
+OrderRouter.get("/latestorder/:id", getLatestOrder);
+
 export default OrderRouter;

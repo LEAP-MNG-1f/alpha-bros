@@ -167,12 +167,13 @@ const updatePlaces = async (req, res) => {
       description,
       location,
       ambiance,
-      workingHours: {
-        weekdays: { open: weekdaysOpen, close: weekdaysClose },
-        weekend: { open: weekendOpen, close: weekendClose },
-        closedday,
-      },
+      weekdaysOpen,
+      weekdaysClose,
+      weekendOpen,
+      weekendClose,
+      closedday,
     } = req.body;
+
     const placesId = req.params["id"];
     const result = await Places.findByIdAndUpdate(placesId, {
       name,
