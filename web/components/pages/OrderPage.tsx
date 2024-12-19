@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TOrderType, TPlaces } from "@/types/DataTypes";
+import { Loader } from "../layout/Loader";
 
 export default function OrderPage() {
   const [orderData, setOrderData] = useState<TOrderType[]>([]);
@@ -43,11 +44,7 @@ export default function OrderPage() {
   }, [userId]);
 
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

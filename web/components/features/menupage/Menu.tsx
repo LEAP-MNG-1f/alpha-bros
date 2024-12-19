@@ -14,8 +14,8 @@ type TMenuProps = {
 export const Menu = ({ places, categories }: TMenuProps) => {
   const router = useRouter();
   return (
-    <main className="w-screen flex  items-center flex-col py-10">
-      <div className=" container flex justify-center flex-col">
+    <main className="w-screen flex  items-center flex-col pb-10">
+      <div className=" container flex justify-center flex-col mt-[65px]">
         <h1 className="text-2xl italic  sm:text-center text-left ">
           Хайж буй орчиноо сонгоно уу
         </h1>

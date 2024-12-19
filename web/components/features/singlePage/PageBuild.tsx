@@ -13,7 +13,7 @@ type TSinglePageProps = {
 };
 export const PageBuild = ({ place }: TSinglePageProps) => {
   return (
-    <div className="w-screen min-h-screen flex justify-center">
+    <div className="w-screen min-h-screen flex justify-center pt-[65px]">
       {place.map((data) => {
         return (
           <div
