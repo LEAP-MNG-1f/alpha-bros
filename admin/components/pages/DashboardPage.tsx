@@ -19,12 +19,9 @@ const DashboardPage = () => {
     }
   };
 
-  console.log(orderData, "orderData");
-
   useEffect(() => {
     orderDataFetch();
   }, []);
-
   return (
     <main className="h-screen w-screen bg-slate-100">
       <DashboardPageZone />

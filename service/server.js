@@ -10,6 +10,7 @@ import locationRouter from "./routes/location.route.js";
 import cloudinary from "cloudinary";
 import OrderRouter from "./routes/order.route.js";
 import { sendMail } from "./controllers/mail.controller.js";
+import imageRoute from "./routes/image.route.js";
 
 const server = express();
 const Port = 8000;
@@ -32,12 +33,7 @@ server.use("/api", userRouter);
 server.use("/api", placesRoute);
 server.use("/api", OrderRouter);
 server.post("/sendmail", sendMail);
-
-
-
-
-
-
+server.use("/api", imageRoute);
 
 server.listen(Port, () => {
   console.log(`Server started http://localhost:${Port}`);

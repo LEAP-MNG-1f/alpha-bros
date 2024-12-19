@@ -86,9 +86,11 @@ export type TPlaces = {
   ambiance?: string;
   capacity: number;
   image: string[];
+  phoneNumber?: string;
   category: TCategories;
   location?: TLocation;
   workingHours: TWeeklyhours;
+  categoryData?: TCategories[];
 };
 
 export type TDistrict = {
@@ -118,4 +120,43 @@ export type orderType = {
   process: string;
   userId: string;
   __v: number;
+};
+
+///
+
+export type TCategoriesEdit = {
+  _id: string;
+  name: string;
+};
+
+export type TWorkingHoursEdit = {
+  open: string;
+  close: string;
+};
+export type TWeekhoursEdit = {
+  weekdays: TWorkingHours;
+  weekend: TWorkingHours;
+  closedDay?: string;
+};
+
+export type TLocationEdit = {
+  _id: string;
+  district: string;
+  latitude: string;
+  longitude: string;
+  province: string;
+  street: string;
+};
+
+export type TPlacesEdit = {
+  _id: string;
+  name: string;
+  description: string;
+  ambiance?: string;
+  capacity: number;
+  image: string[];
+  phoneNumber: string;
+  category: TCategories;
+  location: TLocation;
+  workingHours: TWeekhoursEdit;
 };
