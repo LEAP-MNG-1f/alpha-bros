@@ -1,4 +1,5 @@
 "use client";
+import { categoryMockData } from "@/constant/mockdatas";
 import { useRouter } from "next/navigation";
 
 type DistributerTypeProps = {
@@ -15,7 +16,7 @@ export const DistributorCard = ({ name, id }: DistributerTypeProps) => {
           router.push(`/menu/${name}`);
         }}
       >
-        {name}
+        {categoryMockData.find((data) => data.nameId === name)?.name}
       </button>
     </main>
   );

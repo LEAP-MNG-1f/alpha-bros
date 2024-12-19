@@ -16,8 +16,8 @@ export const Menu = ({ places, categories }: TMenuProps) => {
 
   return (
     <main className="w-screen flex  items-center flex-col pb-10">
-      <div className=" container flex justify-center flex-col mt-[100px]">
-        <h1 className="text-2xl italic  sm:text-center text-left ">
+      <div className=" container flex justify-center flex-col mt-[100px] py-10 gap-8">
+        <h1 className="text-2xl italic  sm:text-center text-left">
           Хайж буй орчиноо сонгоно уу
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:flex w-full lg:justify-between rounded-2xl my-4 ">
