@@ -14,7 +14,7 @@ const placesRoute = express.Router();
 
 placesRoute.post("/places", upload.array("image"), createPlaces);
 placesRoute.get("/places", getAllPlaces);
-placesRoute.put("/places/:id", updatePlaces);
+placesRoute.put("/places/:id", upload.array("image"), updatePlaces);
 placesRoute.delete("/places", deletePlaces);
 placesRoute.get("/selected", getSelectedPlaces);
 placesRoute.get("/places/:id", getSinglePagePlaces);

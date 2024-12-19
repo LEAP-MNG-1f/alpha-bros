@@ -143,7 +143,6 @@ const DashboardPage = () => {
   useEffect(() => {
     orderDataFetch();
   }, []);
-
   return (
     <main className="h-screen w-screen bg-slate-100">
       {isLoading ? (

@@ -40,7 +40,7 @@ export const AdminContent = ({
               {placesData.map((data: TPlaces) => {
                 return (
                   <AdminPlaceCard
-                    key={data._id}
+                    key={`${data._id}${Date.now()}`}
                     image={data.image}
                     _id={data._id}
                     name={data.name}
@@ -49,6 +49,7 @@ export const AdminContent = ({
                     description={data.description}
                     workingHours={data.workingHours}
                     location={data.location}
+                    categoryData={categoryData}
                   />
                 );
               })}

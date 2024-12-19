@@ -3,7 +3,6 @@
 import { TPlaces } from "@/data/DataTypes";
 import { EDButton } from "../buttons";
 import { districts } from "../buttons";
-import { Dispatch, SetStateAction } from "react";
 
 export const AdminPlaceCard = (data: TPlaces) => {
   const districtData = data?.location?.district;
@@ -72,7 +71,11 @@ export const AdminPlaceCard = (data: TPlaces) => {
         </p>
       </div>
       <div className="flex items-center p-2">
-        <EDButton dataName={data?.name} dateID={data._id} />
+        <EDButton
+          dataName={data?.name}
+          dateID={data._id}
+          categoryData={data?.categoryData}
+        />
       </div>
     </div>
   );
