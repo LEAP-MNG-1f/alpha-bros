@@ -4,8 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
-import { NuqsAdapter } from "nuqs/adapters/next";
 import { Toaster } from "@/components/ui/sonner";
+import { APIProviderMap } from "@/components/context/Context";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -31,14 +31,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-MainBlue`}
-        >
-          <Navbar />
-          {children}
-          <Footer />
-          <Toaster position="top-right" />
-        </body>
+        <APIProviderMap>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-MainBlue`}
+          >
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster position="top-right" />
+          </body>
+        </APIProviderMap>
       </html>
     </ClerkProvider>
   );
