@@ -39,6 +39,8 @@ const getSelectedUsersandLatestOrder = async (req, res) => {
   }
 };
 
+
+
 const getAllOrder = async (req, res) => {
   try {
     const result = await Order.find().populate("userId").populate("placeId");
