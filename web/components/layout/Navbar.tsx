@@ -38,12 +38,14 @@ export const Navbar = () => {
               </button>
             ))}
           </div>
-          <div className="flex">
-            <LightTower />
-            <p className=" font-bold text-[22px] w-auto text-SecondColor not-italic leading-[norma]">
-              LIGHT HOUSE
-            </p>
-          </div>
+          <Link href={"/"}>
+            <div className="flex">
+              <LightTower />
+              <p className=" font-bold text-[22px] w-auto text-SecondColor not-italic leading-[norma]">
+                LIGHT HOUSE
+              </p>
+            </div>
+          </Link>
 
           <div className="flex items-center justify-end gap-4">
             <div className="w-[100px]"></div>
