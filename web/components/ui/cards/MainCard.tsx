@@ -65,7 +65,7 @@ const MainCard = (data: TPlaces) => {
   return (
     <div
       onClick={() => router.push(`/place/${data._id}`)}
-      className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden group"
+      className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden group cursor-pointer"
     >
       <div className="rounded-xl w-full h-full relative">
         <Image
