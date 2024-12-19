@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MainCard from "../ui/cards/MainCard";
 import Link from "next/link";
+import { NoSearchItem } from "../layout/NoSearchItem";
+import { Loader } from "../layout/Loader";
 
 export const SearchedPage = () => {
   const searchParams = useSearchParams();
@@ -40,30 +42,17 @@ export const SearchedPage = () => {
   useEffect(() => {
     SearchedDataFetch();
   }, []);
+
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
   if (searchedData.length == 0) {
-    return (
-      <div className="w-screen h-screen flex flex-col justify-center items-center gap-4 text-[#333]">
-        Хайлтын илэрч байхгүй байна.
-        <Link
-          href="/menu"
-          className="px-4 py-2 rounded-lg bg-MainColor text-MainWhite"
-        >
-          Бүх газрыг үзэх
-        </Link>
-      </div>
-    );
+    return <NoSearchItem name="/" />;
   }
 
   return (
     <main className="w-screen min-h-screen flex pt-[65px]">
-      <div className="mx-auto container">
+      <div className="mx-auto container grid grid-cols-4 gap-4">
         {searchedData &&
           searchedData.map((data: TPlaces) => {
             return (

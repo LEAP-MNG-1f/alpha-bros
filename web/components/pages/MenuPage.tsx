@@ -4,6 +4,7 @@ import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TCategories, TPlaces } from "@/types/DataTypes";
 import { Menu } from "../features/menupage/Menu";
 import { useEffect, useState } from "react";
+import { Loader } from "../layout/Loader";
 
 export default function Menupage() {
   const [categories, setCategories] = useState<TCategories[]>([]);
@@ -45,11 +46,7 @@ export default function Menupage() {
     fetchPlaces();
   }, []);
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div>

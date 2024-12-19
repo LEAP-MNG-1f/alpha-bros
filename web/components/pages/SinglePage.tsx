@@ -5,6 +5,7 @@ import { TPlaces } from "@/types/DataTypes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageBuild } from "../features/singlePage/PageBuild";
+import { Loader } from "../layout/Loader";
 
 export default function SinglePage() {
   const params = useParams<{ place: string }>();
@@ -42,11 +43,7 @@ export default function SinglePage() {
     fetchPlaces();
   }, []);
   if (loading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   return <main>{<PageBuild place={place} />}</main>;

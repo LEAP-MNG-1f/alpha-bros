@@ -5,8 +5,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Places } from "../features/categorysinglepage/Places";
 import { CategoryMap } from "../features/categorysinglepage/CategoryMap";
-import Link from "next/link";
-import { DistributorCard } from "../ui/cards/DistributorCard";
+import { NoSearchItem } from "../layout/NoSearchItem";
+import { Loader } from "../layout/Loader";
 
 export default function CategoryPage() {
   const [data, setData] = useState<TPlaces[]>([]);
@@ -35,26 +35,15 @@ export default function CategoryPage() {
   }, []);
 
   if (loader) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <p>Уншиж байна...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (data.length == 0) {
-    return (
-      <div className="w-screen h-screen flex flex-col items-center justify-center gap-4">
-        <div>Хайлтын илэрц байхгүй байна.</div>
-        <Link href={"/menu"}>
-          <DistributorCard name="Буцах" id="" />
-        </Link>
-      </div>
-    );
+    return <NoSearchItem name="/" />;
   }
   return (
-    <main className="w-screen flex  justify-center">
-      <div className="container grid grid-cols-2 gap-4">
+    <main className="w-screen flex justify-center">
+      <div className="container grid grid-cols-2 gap-4 mt-[65px]">
         <Places data={data} />
         <CategoryMap places={data} />
       </div>
