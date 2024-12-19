@@ -8,7 +8,7 @@ export const CategorySection = ({
   categories: TCategories[];
 }) => {
   return (
-    <div className="container flex flex-col gap-8 justify-center items-center self-center pt-20 mb-20 ">
+    <div className="container flex flex-col gap-10 justify-center items-center self-center pt-20 mb-20 ">
       <h1 className="text-2xl font-bold not-italic">
         Дурсамжаа хайраар дүүргэх орчинг хайж олцгооё.
       </h1>

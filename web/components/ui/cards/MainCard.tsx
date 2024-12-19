@@ -16,6 +16,7 @@ import { ArrowIcon } from "../icons";
 const MainCard = (data: TPlaces) => {
   const router = useRouter();
   const [open, setOpen] = useState("");
+  const [color, setColor] = useState("");
 
   useEffect(() => {
     const checkOpenStatus = () => {
@@ -28,6 +29,7 @@ const MainCard = (data: TPlaces) => {
       // Check if it's a closed day
       if (selectedPlace?.workingHours.closedDay === currentDay.toString()) {
         setOpen("Хаалттай");
+        setColor("bg-red-100");
         return;
       }
 
@@ -47,6 +49,12 @@ const MainCard = (data: TPlaces) => {
         currentTime >= openTime && currentTime <= closeTime
           ? "Нээлттэй"
           : "Хаалттай"
+      );
+
+      setColor(
+        currentTime >= openTime && currentTime <= closeTime
+          ? "bg-green-100"
+          : "bg-red-100"
       );
     };
 
@@ -103,7 +111,9 @@ const MainCard = (data: TPlaces) => {
           </div>
         </div>
         <div className={`flex justify-between`}>
-          <div className="font-bold text-xl">{open}</div>
+          <div className={`${color} px-3 py-1 rounded-lg`}>
+            <p className="font-bold text-sm">{open}</p>
+          </div>
           <div className="flex gap-1 items-center justify-center  cursor-pointer   ">
             <button className="text-xs leading-normal not-italic">
               Дэлгэрэнгүй үзэх
