@@ -4,8 +4,6 @@ import WorkingTimeCard from "../singlePage/WorkingTimeCard";
 import { ClosedDay } from "../singlePage/ClosedDay";
 
 export const PlaceInformation = ({ placeData }: { placeData: TPlaces[] }) => {
-  console.log(placeData);
-
   return (
     <div>
       {placeData.map((data) => {
