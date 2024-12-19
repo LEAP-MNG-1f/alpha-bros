@@ -77,7 +77,7 @@ export default function OrderPage() {
 
   return (
     <main className="h-screen w-screen flex justify-center">
-      <div className="max-w-screen-xl container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
+      <div className="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
         <div className="row-span-2">
           <OrderInformation orderData={orderData} />
         </div>
