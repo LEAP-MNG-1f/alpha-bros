@@ -119,7 +119,7 @@ const getSelectedPlaces = async (req, res) => {
     if (placesToReturn.length > 0) {
       res.status(200).json({ success: true, data: placesToReturn });
     } else {
-      res.status(200).json({ success: false, data: "Places not found" });
+      res.status(200).json({ success: false, data: [] });
     }
   } catch (error) {
     console.log("error:", error);

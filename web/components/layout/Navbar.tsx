@@ -3,7 +3,8 @@
 import { LightTower } from "@/components/ui/icons/LightTower";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { ProfileIcon } from "../ui/icons";
 
 const paths = [
   {
@@ -13,46 +14,67 @@ const paths = [
   },
   {
     id: 2,
-    name: "Орчиноор хайх",
+    name: "Орчноор хайх",
     path: "/menu",
   },
 ];
 export const Navbar = () => {
+  const pathname = usePathname();
   const router = useRouter();
   return (
-    <div className="w-screen flex  justify-center py-2  text-gray-400 ">
-      <div className="max-w-screen-xl container flex justify-between  items-center w-full">
-        <div className="flex gap-4 justify-start">
-          {paths.map((path) => (
-            <button
-              className="p-2 px-4"
-              onClick={() => router.push(`${path.path}`)}
-              key={path.id}
-            >
-              {path.name}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-end gap-4">
-          <SignedOut>
-            <SignInButton>
-              <button className="p-1 border border-green-500 rounded-md">
-                Sign in
+    <div className="w-full text-black fixed z-[2] bg-white rounded-b-[50px]">
+      <div className="background filter">
+        <div className="mx-auto container flex justify-between  items-center py-4 w-full">
+          <div className="flex gap-4 justify-start">
+            {paths.map((path) => (
+              <button
+                className={`hover:text-SecondColor duration-200 px-2 py-1 text-base not-italic font-bold leading-[16px] tracking-[-0.2px] ${
+                  pathname === path.path ? "text-SecondColor" : "text-black"
+                }`}
+                onClick={() => router.push(`${path.path}`)}
+                key={path.id}
+              >
+                {path.name}
               </button>
-            </SignInButton>
-          </SignedOut>
+            ))}
+          </div>
+          <Link href={"/"}>
+            <div className="flex">
+              <LightTower />
+              <p className=" font-bold text-[22px] w-auto text-SecondColor not-italic leading-[norma]">
+                LIGHT HOUSE
+              </p>
+            </div>
+          </Link>
 
-          <SignedIn>
-            <UserButton
-              showName
-              appearance={{
-                elements: {
-                  userButtonBox: "bg-MainWhite rounded-x px-4 py-2 rounded-md ",
-                },
-              }}
-            />
-          </SignedIn>
+          <div className="flex items-center justify-end gap-4">
+            <div className="w-[100px]"></div>
+            <SignedOut>
+              <SignInButton>
+                <button className="group flex border hover:border-SecondColor border-black items-center px-2 rounded-lg duration-200">
+                  <ProfileIcon fillHover="group-hover:fill-SecondColor duration-100" />
+                  <div className="p-1 rounded-md not-italic group-hover:text-SecondColor duration-200 font-bold text-base">
+                    Нэвтрэх
+                  </div>
+                </button>
+              </SignInButton>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton
+                showName
+                appearance={{
+                  elements: {
+                    userButtonBox: "rounded-x px-2 py-1 rounded-md ",
+                    userButtonOuterIdentifier:
+                      "text-sm not-italic font-bold leading-[16px] tracking-[-0.3px]",
+
+                    userButtonAvatarBox: "w-8 h-8",
+                  },
+                }}
+              />
+            </SignedIn>
+          </div>
         </div>
       </div>
     </div>

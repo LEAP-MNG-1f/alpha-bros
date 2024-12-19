@@ -1,7 +1,7 @@
 export const TwitterIcon = () => {
   return (
     <svg
-      fill="cyan"
+      fill="#405FF2"
       width="24"
       height="24"
       viewBox="0 0 48 48"

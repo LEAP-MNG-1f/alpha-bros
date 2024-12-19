@@ -1,5 +1,10 @@
 import { SearchedPage } from "@/components/pages/searchedPage";
+import { Suspense } from "react";
 
 export default function Page() {
-  return <SearchedPage />;
+  return (
+    <Suspense>
+      <SearchedPage />;
+    </Suspense>
+  );
 }
