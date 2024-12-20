@@ -32,8 +32,8 @@ export const DashboardPageZone: React.FC<DashboardPageZoneProps> = ({
   return (
     <main>
       <div className="w-full fixed z-40 h-full">
-        <div className="container mx-auto  h-full rounded-r-3xl">
-          <div className="flex w-full h-full">
+        <div className="container mx-auto h-full rounded-r-3xl">
+          <div className="flex h-full">
             <SideBar />
             <DashboardContent orderData={orderData} />
           </div>

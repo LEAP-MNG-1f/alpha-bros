@@ -1,6 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { BACKEND_END_POINT } from "../buttons";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Place {
   image: string[];
@@ -32,11 +39,13 @@ interface AdminOrderCardProps {
 export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
   const [process, setProcess] = useState(order.process);
   const [isLoading, setIsLoading] = useState(false);
+  const [newProcess, setNewProcess] = useState("Хүлээгдэж Байна");
 
-  const fetchProcessChange = async (
-    newProcess: "Батлагдсан" | "Цуцлагдсан" | "Хүлээгдэж Байна"
-  ) => {
+  const toSentMail = order.userId.emails;
+
+  const fetchProcessChange = async (newProcess: string) => {
     const orderId = order._id;
+
     const option = {
       method: "PUT",
       headers: {
@@ -62,47 +71,72 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
     } finally {
       setIsLoading(false);
     }
-  };
 
-  const handleProcessChange = () => {
-    let newProcess: "Батлагдсан" | "Цуцлагдсан" | "Хүлээгдэж Байна";
+    let mailText = "";
+    const Subject = "LIHGT HOUSE Захиалгын мэдээлэл";
 
-    switch (process) {
-      case "Хүлээгдэж Байна":
-        newProcess = "Батлагдсан";
-        break;
+    switch (newProcess) {
       case "Батлагдсан":
-        newProcess = "Цуцлагдсан";
+        mailText = "Таны захиалга амжилттай хийгдлээ";
         break;
       case "Цуцлагдсан":
-        newProcess = "Хүлээгдэж Байна";
+        mailText = "Таны захиалга амжилтгүй боллоо";
         break;
-      default:
-        newProcess = "Хүлээгдэж Байна";
     }
 
-    setProcess(newProcess);
-    fetchProcessChange(newProcess);
+    console.log("retdwdferfertg");
+
+    const optionEmail = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ toSentMail, mailText, Subject }),
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/sendmail`,
+        optionEmail
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Процессийг шинэчлэх үед алдаа гарлаа");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  // const handleProcessChange = () => {
+  //   let newProcess: "Батлагдсан" | "Цуцлагдсан" | "Хүлээгдэж Байна";
+
+  //
+
+  //   setProcess(newProcess);
+  //   fetchProcessChange(newProcess);
+  // };
 
   useEffect(() => {
-    if (process !== order.process) {
-      fetchProcessChange(process);
+    if (newProcess !== order.process) {
+      fetchProcessChange(newProcess);
     }
-  }, [process, order.process]);
+  }, [newProcess, order.process]);
 
-  const getProcessColor = () => {
-    switch (process) {
-      case "Батлагдсан":
-        return "text-green-600";
-      case "Цуцлагдсан":
-        return "text-red-600";
-      case "Хүлээгдэж Байна":
-        return "text-yellow-600";
-      default:
-        return "text-[#3F4145]";
-    }
-  };
+  // const getProcessColor = () => {
+  //   switch (process) {
+  //     case "Батлагдсан":
+  //       return "text-green-600";
+  //     case "Цуцлагдсан":
+  //       return "text-red-600";
+  //     case "Хүлээгдэж Байна":
+  //       return "text-yellow-600";
+  //     default:
+  //       return "text-[#3F4145]";
+  //   }
+  // };
 
   const formattedDate = new Date(order.orderDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -148,7 +182,21 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
         </p>
       </div>
       <div className="px-6 py-4 flex items-center w-[200px]">
-        <button
+        <Select onValueChange={(value) => setNewProcess(value)}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Хүлээгдэж Байна" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem className="text-green-600" value="Батлагдсан">
+              Батлагдсан
+            </SelectItem>
+            <SelectItem className="text-red-600" value="Цуцлагдсан">
+              Цуцлагдсан
+            </SelectItem>
+          </SelectContent>
+        </Select>
+
+        {/* <button
           onClick={handleProcessChange}
           disabled={isLoading}
           className={`font-Inter text-sm font-semibold leading-[16px] tracking-[-0.12px] border p-2 rounded bg- ${getProcessColor()} ${
@@ -156,9 +204,8 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
           }`}
         >
           {isLoading ? "Шинэчлэж байна..." : process}
-        </button>
+        </button> */}
       </div>
-      <div className="px-6 py-4 flex items-center"></div>
     </div>
   );
 };
