@@ -49,6 +49,7 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
       setIsLoading(true);
 
       const response = await fetch(`${BACKEND_END_POINT}/order`, option);
+
       const data = await response.json();
 
       if (!response.ok) {

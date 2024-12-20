@@ -11,6 +11,7 @@ const AdminPage = () => {
   const [categoryData, setCategoryData] = useState<TCategories[]>([]);
   const [dataEffect, setDataEffect] = useState<boolean>(false);
   const BACKEND_END_POINT = process.env.BACKEND_URL;
+
   const { deletedId } = useIdContext();
   const fatchData = async () => {
     try {

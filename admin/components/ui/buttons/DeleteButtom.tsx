@@ -21,6 +21,7 @@ type DeleteButtomProps = {
   dateID: string;
 };
 export const BACKEND_END_POINT = process.env.BACKEND_URL;
+
 export const DeleteButtom = ({ dataName, dateID }: DeleteButtomProps) => {
   const [inputValue, setInputValue] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
