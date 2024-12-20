@@ -615,10 +615,12 @@ export const EditButton = ({
                     {savedImages.length > 0 && (
                       <>
                         {savedImages.map((preview, index) => (
-                          <div className="relative w-[250px] h-[300px] flex-shrink-0">
+                          <div
+                            className="relative w-[250px] h-[300px] flex-shrink-0"
+                            key={`${index}${Date.now()}`}
+                          >
                             <Image
                               className="  border border-green-800 border-dashed "
-                              key={`${index}${Date.now()}`}
                               src={imageUrlOptimizer(preview)}
                               alt={`Preview ${index + 1}`}
                               style={{
