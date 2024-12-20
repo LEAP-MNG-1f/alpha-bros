@@ -104,7 +104,7 @@ export const Order = ({ placeId }: { placeId: string }) => {
   };
 
   return (
-    <main className="gap-2 px-5 bg-white flex flex-col rounded-lg shadow-lg h-auto w-[600px] border">
+    <main className="gap-2 px-5 bg-white flex flex-col rounded-lg shadow-lg h-auto w-[500px] border">
       <div className="flex flex-col gap-4 py-4">
         <div className="flex flex-col gap-2">
           <p className="text-[#121316] text-sm font-medium leading-[140%]">
