@@ -4,15 +4,13 @@ import WorkingTimeCard from "../singlePage/WorkingTimeCard";
 import { ClosedDay } from "../singlePage/ClosedDay";
 
 export const PlaceInformation = ({ placeData }: { placeData: TPlaces[] }) => {
-  console.log(placeData);
-
   return (
     <div>
       {placeData.map((data) => {
         return (
           <div
-            className="h-full w-full rounded-xl  bg-MainWhite shadow-2xl p-6 grid grid-cols-2 gap-4"
-            key={data._id}
+            className="h-full w-full rounded-xl  bg-MainWhite shadow-2xl p-3 grid grid-cols-2 gap-4"
+            key={`${data._id} +${data.name} `}
           >
             <img
               src={data.image[0]}

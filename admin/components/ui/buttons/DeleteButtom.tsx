@@ -20,12 +20,12 @@ type DeleteButtomProps = {
   dataName: string;
   dateID: string;
 };
-
+export const BACKEND_END_POINT = process.env.BACKEND_URL;
 export const DeleteButtom = ({ dataName, dateID }: DeleteButtomProps) => {
   const [inputValue, setInputValue] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [loeder, setLoeder] = useState(false);
-  const BACKEND_END_POINT = process.env.BACKEND_URL;
+
   const { setDeletedId } = useIdContext();
   const safaValue = dataName;
   const placesId = dateID;

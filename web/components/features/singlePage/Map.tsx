@@ -8,7 +8,7 @@ import {
 export const PlaceMap = ({ place }: { place: TPlaces }) => {
   return (
     <APIProvider apiKey={"AIzaSyBeK6kNAnqtWp2xZpPHmcXOjESpg5cu6ek"}>
-      <div className="w-full h-full">
+      <div className="w-full h-full rounded-xl">
         <Map
           defaultZoom={18}
           defaultCenter={{

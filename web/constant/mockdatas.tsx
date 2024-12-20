@@ -1,4 +1,5 @@
 export const BACKEND_ENDPOINT = "http://localhost:8000";
+// export const BACKEND_ENDPOINT = process.env.API_KEY;
 
 export const FooterData = {
   phoneNumber: "(976) 9911 7505",
@@ -22,15 +23,17 @@ export const Now = `${hour.toString().padStart(2, "0")}:${min
 export type TDistributor = {
   id: number;
   name: string;
+  nameId: string;
 };
 
-export const distributorData: TDistributor[] = [
-  { id: 1, name: "Зоог" },
-  { id: 2, name: "Амрах" },
-  { id: 3, name: "Адал явдал" },
-  { id: 4, name: "Намуухан" },
-  { id: 5, name: "Уулзалт" },
-  { id: 6, name: "Хөгжилдөх" },
+export const categoryMockData: TDistributor[] = [
+  { id: 1, name: "Зоог", nameId: "FOOD" },
+  { id: 2, name: "Уулзах", nameId: "Meeting" },
+  { id: 3, name: "Болзоо", nameId: "Dating" },
+  { id: 4, name: "Хөгжилдөх", nameId: "Enjoy" },
+  { id: 5, name: "Сургалт", nameId: "Seminar" },
+  { id: 6, name: "Дасгал", nameId: "Training" },
+  { id: 7, name: "Хүрээлэлээ тэлэх", nameId: "Networking" },
 ];
 
 export type TWorkingHours = {

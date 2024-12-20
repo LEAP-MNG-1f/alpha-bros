@@ -5,11 +5,11 @@ type PropsRecommendSpaces = {
 };
 export const RecommendedSpaces = ({ data }: PropsRecommendSpaces) => {
   return (
-    <div className="w-screen flex flex-col gap-10 justify-center items-center">
-      <h1 className="text-2xl font-Roboto font-semibold italic">
+    <div className="container mx-auto w-screen flex flex-col gap-10 my-20 justify-center items-center">
+      <h1 className="text-2xl font-bold not-italic">
         Үнэлгээ өндөртэй газрууд
       </h1>
-      <div className="grid sm:grid-cols-4 lg:grid-col-6 gap-7 mx-auto">
+      <div className="w-full lg:flex sm:grid  sm:grid-cols-4 lg:justify-between gap-7">
         {data.slice(0, 4).map((data: TPlaces) => {
           return (
             <MainCard

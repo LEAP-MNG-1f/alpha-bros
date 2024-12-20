@@ -5,10 +5,12 @@ import { TPlaces } from "@/types/DataTypes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageBuild } from "../features/singlePage/PageBuild";
+import { Loader } from "../layout/Loader";
 
 export default function SinglePage() {
   const params = useParams<{ place: string }>();
   const [place, setPlace] = useState<TPlaces[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setPlace(
@@ -19,6 +21,7 @@ export default function SinglePage() {
   }, []);
 
   const fetchPlaces = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);
       const result = await response.json();
@@ -27,13 +30,21 @@ export default function SinglePage() {
         return place._id === params.place;
       });
       setPlace(correctPlace);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       throw new Error();
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchPlaces();
   }, []);
+  if (loading) {
+    return <Loader />;
+  }
+
   return <main>{<PageBuild place={place} />}</main>;
 }

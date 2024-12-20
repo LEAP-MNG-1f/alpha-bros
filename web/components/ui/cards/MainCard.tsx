@@ -11,10 +11,12 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ArrowIcon } from "../icons";
 
 const MainCard = (data: TPlaces) => {
   const router = useRouter();
   const [open, setOpen] = useState("");
+  const [color, setColor] = useState("");
 
   useEffect(() => {
     const checkOpenStatus = () => {
@@ -27,6 +29,7 @@ const MainCard = (data: TPlaces) => {
       // Check if it's a closed day
       if (selectedPlace?.workingHours.closedDay === currentDay.toString()) {
         setOpen("Хаалттай");
+        setColor("bg-red-100");
         return;
       }
 
@@ -47,6 +50,12 @@ const MainCard = (data: TPlaces) => {
           ? "Нээлттэй"
           : "Хаалттай"
       );
+
+      setColor(
+        currentTime >= openTime && currentTime <= closeTime
+          ? "bg-green-100"
+          : "bg-red-100"
+      );
     };
 
     checkOpenStatus();
@@ -54,7 +63,10 @@ const MainCard = (data: TPlaces) => {
 
   const imageUrl = data?.image[0];
   return (
-    <div className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden ">
+    <div
+      onClick={() => router.push(`/place/${data._id}`)}
+      className="w-[300px] h-[500px] rounded-xl flex flex-col items-center border overflow-hidden group cursor-pointer"
+    >
       <div className="rounded-xl w-full h-full relative">
         <Image
           src={imageUrl}
@@ -66,22 +78,26 @@ const MainCard = (data: TPlaces) => {
           fill
         />
       </div>
-      <div className="bg-MainColor p-4 w-[300px] h-[200px] flex flex-col gap-4 text-MainWhite rounded-b-xl">
+      <div className="bg-white p-4 w-[300px] h-[200px] flex flex-col gap-4 text-black rounded-b-xl">
         <div className="flex flex-col border-b border-white">
-          <p className="text-2xl line-clamp-1">{data.name}</p>
+          <p className="text-xl not-italic font-semibold leading-normal line-clamp-1">
+            {data.name}
+          </p>
           <div>
             <div className="flex gap-2 items-center">
               <div>
                 <BookOpenTextIcon size={16} />
               </div>
-              <span className="line-clamp-1">{data.description}</span>
+              <span className="line-clamp-1 text-base font-normal ">
+                {data.description}
+              </span>
             </div>
           </div>
         </div>
         <div className="flex gap-4 justify-between">
-          <div className="flex items-center justify-center gap-1 border-b border-MainWhite ">
+          <div className="flex items-center justify-center gap-1 border-b border-black ">
             <MapPinIcon size={16} />
-            <p className="text-MainWhite line-clamp-1">
+            <p className="text-black line-clamp-1">
               {districts.map((district) => {
                 return (
                   data.location?.district == district.idName && district.name
@@ -89,19 +105,22 @@ const MainCard = (data: TPlaces) => {
               })}
             </p>
           </div>
-          <div className="flex items-center justify-center gap-1 border-b border-MainWhite ">
+          <div className="flex items-center justify-center gap-1 border-b border-black ">
             <UsersIcon size={16} />
             <p>{data.capacity}</p>
           </div>
         </div>
         <div className={`flex justify-between`}>
-          <div className="font-bold text-xl">{open}</div>
-          <div
-            onClick={() => router.push(`/place/${data._id}`)}
-            className="flex gap-1 items-center justify-center  cursor-pointer   "
-          >
-            <button>Дэлгэрэнгүй үзэх</button>
-            <MoveUpRight />
+          <div className={`${color} px-3 py-1 rounded-lg`}>
+            <p className="font-bold text-sm">{open}</p>
+          </div>
+          <div className="flex gap-1 items-center justify-center  cursor-pointer   ">
+            <button className="text-xs leading-normal not-italic">
+              Дэлгэрэнгүй үзэх
+            </button>
+            <div className="origin-center group-hover:rotate-45 group-hover:translate-x-2 transition-all duration-300">
+              <ArrowIcon />
+            </div>
           </div>
         </div>
       </div>

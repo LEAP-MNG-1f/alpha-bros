@@ -16,24 +16,54 @@ export const Order = ({ placeId }: { placeId: string }) => {
   const router = useRouter();
   const handleOrderSubmit = async () => {
     if (!currentUser.isSignedIn) {
-      toast("Please sign in");
+      toast("Уучларай", {
+        description: "Та эхлээд нэвтэрнэ үү",
+        action: {
+          label: "Хаах",
+          onClick: () => console.log("Та эхлээд нэвтэрнэ үү"),
+        },
+      });
       return;
     }
     if (!date) {
-      toast("Өдөр сонгоогүй байна.");
+      toast("Мэдээлэл дутуу байна.", {
+        description: "Өдрөө оруулна уу!",
+        action: {
+          label: "Хаах",
+          onClick: () => console.log("Өдөр сонгоогүй байна!"),
+        },
+      });
       return;
     }
-    console.log("people is:", people);
     if (people == "") {
-      toast("Хүний тоо оруулна уу");
+      toast("Мэдээлэл дутуу байна.", {
+        description: "Хүний тоо оруулна уу!",
+        action: {
+          label: "Хаах",
+          onClick: () => console.log("Хүний тоо оруулна уу!"),
+        },
+      });
       return;
     }
     if (parseInt(people) < 1) {
-      toast("0 -ээс их хүн оруулна уу");
+      toast("Мэдээлэл дутуу байна.", {
+        description: "0 -ээс их хүн оруулна уу!",
+        action: {
+          label: "Хаах",
+          onClick: () => console.log("0 -ээс их хүн оруулна уу!"),
+        },
+      });
+
       return;
     }
     if (!time) {
-      toast("Цаг оруулна уу !");
+      toast("Мэдээлэл дутуу байна.", {
+        description: "Цаг оруулна уу!",
+        action: {
+          label: "Хаах",
+          onClick: () => console.log("Цаг оруулна уу!"),
+        },
+      });
       return;
     }
 
@@ -74,56 +104,110 @@ export const Order = ({ placeId }: { placeId: string }) => {
   };
 
   return (
-    <main className="flex flex-col gap-2 px-5 bg-white rounded-lg shadow-lg  h-screen w-[300px] ">
-      <div className="flex flex-col gap-1">
-        <Input
-          type="number"
-          value={people}
-          onChange={(e) => {
-            setPeople(e.target.value);
+    <main className="gap-2 px-5 bg-white flex flex-col rounded-lg shadow-lg h-auto w-[600px] border">
+      <div className="flex flex-col gap-4 py-4">
+        <div className="flex flex-col gap-2">
+          <p className="text-[#121316] text-sm font-medium leading-[140%]">
+            Хүний тоогоо оруулна уу
+          </p>
+          <Input
+            type="number"
+            value={people}
+            onChange={(e) => {
+              setPeople(e.target.value);
+            }}
+            placeholder="Хүний тоогоо оруулна уу"
+            className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <p className="text-[#121316] text-sm font-medium leading-[140%]">
+            Цагаа оруулна уу
+          </p>
+          <Input
+            type="date"
+            value={date ? date.toISOString().split("T")[0] : ""}
+            onChange={(e) =>
+              setDate(e.target.value ? new Date(e.target.value) : undefined)
+            }
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <p className="text-[#121316] text-sm font-medium leading-[140%]">
+            Өдрөө оруулна уу
+          </p>
+          <Input
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="rounded-md"
+          />
+        </div>
+      </div>
+      <div className="w-full border-[0.5px] border-x-0"></div>
+      <div className="w-full py-4">
+        <div className="p-4 bg-gray-100 rounded-md">
+          <h3 className="font-semibold text-lg text-SecondColor">
+            Захиалгын мэдээлэл
+          </h3>
+          <div className="w-full border-[0.5px] border-white my-1"></div>
+          <p className="text-base font-semibold leading-normal not-italic">
+            Өдөр:{" "}
+            {
+              <span className="font-normal">
+                {date?.toLocaleDateString() || "Сонгоогүй"}
+              </span>
+            }
+          </p>
+          <p className="text-base font-semibold leading-normal not-italic">
+            Хүмүүсийн тоо:{" "}
+            {<span className="font-normal"> {people || "Сонгоогүй"} </span>}
+          </p>
+          <p className="text-base font-semibold leading-normal not-italic">
+            Цаг: {<span className="font-normal">{time || "Сонгоогүй"}</span>}
+          </p>
+        </div>
+      </div>
+      <div className="w-full border-[0.5px] border-x-0"></div>
+      <div className="w-full h-16 grid grid-cols-2 gap-4 pb-4 items-center">
+        <button
+          className="bg-slate-100 duration-200 text-SecondColor border font-semibold px-4 py-2 rounded-lg h-[40px] w-full"
+          onClick={() => {
+            setDate(undefined);
+            setPeople("");
+            setTime("");
           }}
-          placeholder="Хүний тоогоо оруулна уу"
-          className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        />
+        >
+          Арилгах
+        </button>
+        {isLoading === false ? (
+          <button
+            onClick={handleOrderSubmit}
+            className="bg-SecondColor hover:bg-SecondColor/70 duration-200 text-white font-semibold px-4 py-2 rounded-lg h-[40px] w-full"
+          >
+            Захиалга өгөх
+          </button>
+        ) : (
+          <button
+            disabled
+            className="flex items-center justify-center gap-4 bg-SecondColor/70 text-white px-4 py-2 rounded-lg h-[40px] w-full"
+          >
+            <div className="flex items-center justify-center">
+              <div className="w-6 h-6 border-4 border-white border-solid rounded-full animate-spin border-t-transparent"></div>
+            </div>
+            <p className="font-semibold">Уншиж байна</p>
+          </button>
+        )}
       </div>
-      <div className="flex flex-col gap-2">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          className="rounded-md border"
-        />
-      </div>
-      <div>
-        <Input
-          type="time"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="rounded-md"
-        />
-      </div>
-      <div className="mt-4 p-4 bg-gray-100 rounded-md">
-        <h3 className="font-semibold text-lg">Захиалгын мэдээлэл</h3>
-        <p>Өдөр: {date?.toLocaleDateString() || "Сонгоогүй"}</p>
-        <p>Хүмүүсийн тоо: {people}</p>
-        <p>Цаг: {time || "Сонгоогүй"}</p>
-      </div>
-      <button
-        className="bg-MainColor text-white font-semibold p-4 rounded-lg w-full hover:shadow-2xl"
-        onClick={handleOrderSubmit}
-      >
-        {isLoading ? "Уншиж байна" : " Захиалга өгөх"}
-      </button>
-      <button
-        className="bg-gray-300 text-gray-700 font-semibold p-4 rounded-lg w-full hover:bg-gray-200"
-        onClick={() => {
-          setDate(new Date());
-          setPeople("");
-          setTime("");
-        }}
-      >
-        Арилгах
-      </button>
     </main>
   );
 };
+
+{
+  /* <button
+          className="bg-SecondColor hover:bg-SecondColor/70 duration-200 text-white font-semibold p-4 rounded-lg w-full"
+          onClick={handleOrderSubmit}
+        >
+          {isLoading ? "Уншиж байна" : " Захиалга өгөх"}
+        </button> */
+}

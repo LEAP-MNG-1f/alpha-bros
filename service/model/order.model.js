@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema({
   process: {
     type: String,
     enum: ["Батлагдсан", "Цуцлагдсан", "Хүлээгдэж Байна"],
-    default: "Батлагдсан",
+    default: "Хүлээгдэж Байна",
   },
   placeId: {
     type: mongoose.SchemaTypes.ObjectId,
