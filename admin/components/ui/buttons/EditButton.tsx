@@ -618,7 +618,7 @@ export const EditButton = ({
                           <div className="relative w-[250px] h-[300px] flex-shrink-0">
                             <Image
                               className="  border border-green-800 border-dashed "
-                              key={index}
+                              key={`${index}${Date.now()}`}
                               src={imageUrlOptimizer(preview)}
                               alt={`Preview ${index + 1}`}
                               style={{
