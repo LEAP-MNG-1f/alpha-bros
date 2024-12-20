@@ -31,7 +31,7 @@ export const DashboardContent: React.FC<DashboardContentProps> = ({
   orderData,
 }) => {
   return (
-    <main className="w-full h-[90%] pb-3">
+    <main className="w-[78.1%] h-[87%] pb-3">
       <Header />
       <div className="pl-8 pt-8 h-full">
         <div className="bg-white h-full rounded-xl">
@@ -65,7 +65,7 @@ export const DashboardContent: React.FC<DashboardContentProps> = ({
               <div className="w-5 h-5"></div>
             </div>
           </div>
-          <div className="bg-MainWhite px-6 pt-2 w-full h-[85%] overflow-hidden">
+          <div className="bg-MainWhite px-6 pt-2 w-full h-[85%] rounded-b-2xl overflow-hidden">
             <div className="flex flex-col gap-6 w-full h-[100%] overflow-scroll">
               {orderData.map((order) => (
                 <AdminOrderCard key={order._id} order={order} />

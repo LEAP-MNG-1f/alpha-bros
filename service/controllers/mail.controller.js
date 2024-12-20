@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const sendMail = async (req, res) => {
+  console.log("Ajilah bnaaa");
   let mailTransporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -11,6 +12,9 @@ const sendMail = async (req, res) => {
     },
   });
   const { toSentMail, Subject, mailText } = req.body;
+
+  console.log(req.body);
+
   let mailDetails = {
     from: `${process.env.MAIL}`,
     to: `${toSentMail}`,
