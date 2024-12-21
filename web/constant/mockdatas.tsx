@@ -1,5 +1,3 @@
-export const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_API_KEY;
-
 export const FooterData = {
   phoneNumber: "(976) 9911 7505",
   mail: "Lighthousemongol@gmail.com",

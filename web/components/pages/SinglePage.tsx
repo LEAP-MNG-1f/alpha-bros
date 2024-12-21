@@ -1,6 +1,5 @@
 "use client";
 
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TPlaces } from "@/types/DataTypes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,10 +19,11 @@ export default function SinglePage() {
   }, []);
 
   const fetchPlaces = async () => {
-    console.log("BACKEND_POINT:", BACKEND_ENDPOINT);
     setLoading(true);
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/places`
+      );
       const result = await response.json();
       const places = result.data;
       const correctPlace = places.filter((place: TPlaces) => {

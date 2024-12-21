@@ -56,12 +56,16 @@ const getAllOrder = async (req, res) => {
 const changeOrderRole = async (req, res) => {
   try {
     const { orderId, newProcess } = req.body;
-    const result = await Order.findByIdAndUpdate(orderId, {
-      process: newProcess,
-    });
+    const result = await Order.findByIdAndUpdate(
+      orderId,
+      {
+        process: newProcess,
+      },
+      { new: true }
+    );
     res.status(200).json({ success: true, data: result });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ error });
   }
 };
 

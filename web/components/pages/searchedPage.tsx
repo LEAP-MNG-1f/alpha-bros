@@ -1,5 +1,5 @@
 "use client";
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
+
 import { TPlaces } from "@/types/DataTypes";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,7 +22,7 @@ export const SearchedPage = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${BACKEND_ENDPOINT}/api/selected?placesLocation=${location}&categorizedPlaces=${category}&capacity=${peoplecount}`
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/selected?placesLocation=${location}&categorizedPlaces=${category}&capacity=${peoplecount}`
       );
       const result = await response.json();
       if (result.success == true) {

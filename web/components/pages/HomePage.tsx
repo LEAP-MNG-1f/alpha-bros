@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Hero } from "../features/homepage/Hero";
 import { CategorySection } from "../features/homepage/CategorySection";
 import { RecommendedSpaces } from "../features/homepage/RecommendedSpaces";
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TCategories, TPlaces } from "@/types/DataTypes";
 import { WhyChoose } from "../features/homepage/WhyChoose";
 import { Loader } from "../layout/Loader";
@@ -16,7 +15,9 @@ export default function HomePage() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/places`
+      );
       const result = await response.json();
       setFetchData(result.data);
       setLoading(false);
@@ -29,7 +30,9 @@ export default function HomePage() {
   };
   const fetchCategory = async () => {
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/category`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/category`
+      );
       const result = await response.json();
       setCategory(result.data);
     } catch (error) {

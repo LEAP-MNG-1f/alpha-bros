@@ -1,6 +1,4 @@
 "use client";
-
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TCategories, TPlaces } from "@/types/DataTypes";
 import { Menu } from "../features/menupage/Menu";
 import { useEffect, useState } from "react";
@@ -14,7 +12,9 @@ export default function Menupage() {
   const fetchCategory = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/category`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/category`
+      );
       const result = await response.json();
       setCategories(result.data);
       setLoading(false);
@@ -28,7 +28,9 @@ export default function Menupage() {
 
   const fetchPlaces = async () => {
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/places`
+      );
       const result = await response.json();
       setPlaces(result.data);
       setLoading(false);
