@@ -5,7 +5,7 @@ import { roboto700 } from "@/app/fonts/fonts";
 
 export const SinglePageDetails = ({ data }: { data: TPlaces }) => {
   return (
-    <div className="w-fill flex flex-col p-4 gap-2">
+    <div className="w-full flex flex-col p-4 gap-2">
       <div className="flex">
         <p className="not-italic font-bold text-[#405FF2] text-sm py-1 px-2 rounded bg-[#405FF212]">
           {data?.category?.name}

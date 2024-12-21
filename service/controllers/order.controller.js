@@ -2,6 +2,8 @@ import { Order } from "../model/order.model.js";
 import { User } from "../model/user.model.js";
 
 const createOrder = async (req, res) => {
+  console.log(req.body);
+
   try {
     const { clerkId, stringDate, people, placeId } = req.body;
     const user = await User.findOne({ clerk_id: clerkId });
@@ -16,7 +18,12 @@ const createOrder = async (req, res) => {
       people: people,
     });
     if (result) {
-      return res.status(201).json({});
+
+      return res.status(201).json({
+        success: true,
+        data: result,
+      });
+
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

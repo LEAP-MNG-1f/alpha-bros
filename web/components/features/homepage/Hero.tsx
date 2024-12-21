@@ -8,7 +8,8 @@ export const Hero = () => {
         className="flex flex-col items-center justify-between w-full h-[860px] bg-MainColor rounded-b-[50px]"
         style={{
           backgroundSize: "cover",
-          backgroundImage: "url('./Hero_Image_UB.jpg')",
+          backgroundImage:
+            "url(https://asset.cloudinary.com/dnbum0cg6/7e69af3b649cc84159d46c7101f669a9)",
         }}
       >
         <div className="container mx-auto">
