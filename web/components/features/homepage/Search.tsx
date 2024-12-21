@@ -38,7 +38,7 @@ export const Search = () => {
       const result = await response.json();
       setCategories(result.data);
     } catch (error) {
-      throw new Error();
+      console.log(`error:${error}`);
     }
   };
   const search = () => {
