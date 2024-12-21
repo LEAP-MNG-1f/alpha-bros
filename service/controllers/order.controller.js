@@ -8,7 +8,7 @@ const createOrder = async (req, res) => {
     const { clerkId, stringDate, people, placeId } = req.body;
     const user = await User.findOne({ clerk_id: clerkId });
     if (!user) {
-      return res.status(404);
+      return res.status(404).json({});
     }
     const id = user._id;
     const result = await Order.create({
@@ -18,10 +18,12 @@ const createOrder = async (req, res) => {
       people: people,
     });
     if (result) {
+
       return res.status(201).json({
         success: true,
         data: result,
       });
+
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
