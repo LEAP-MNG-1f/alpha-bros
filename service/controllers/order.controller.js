@@ -18,16 +18,10 @@ const createOrder = async (req, res) => {
       people: people,
     });
     if (result) {
-<<<<<<< HEAD
-      return res.status(201).json({});
-=======
-
       return res.status(201).json({
         success: true,
         data: result,
       });
-
->>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
