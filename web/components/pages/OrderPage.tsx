@@ -5,7 +5,6 @@ import {
   OrderInformation,
   PlaceInformation,
 } from "../features/orderpage";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
@@ -17,7 +16,6 @@ export default function OrderPage() {
   const [placeData, setPlaceData] = useState<TPlaces[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { userId } = useAuth();
-  const router = useRouter();
 
   const fetchOrderData = async () => {
     try {
@@ -27,7 +25,7 @@ export default function OrderPage() {
       const result = await response.json();
       setOrderData(result.data.OrderData);
 
-      setPlaceData((prev) => [...prev, result.data.LatestData.placeId]);
+      setPlaceData((prev) => [result.data.LatestData.placeId]);
       toast.success("Order data loaded successfully!");
     } catch (error: any) {
       toast.error(error.message || "An error occurred while fetching orders.");
