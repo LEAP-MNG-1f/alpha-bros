@@ -10,7 +10,7 @@ export const TimeSchedule = ({
   workingHours: TWeekhours;
 }) => {
   return (
-    <div className="w-full  h-full flex flex-col p-4 rounded-2xl text-sm ">
+    <div className="w-[300px]  h-full flex flex-col p-4 rounded-2xl text-sm ">
       <div className="flex flex-wrap text-xl gap-5">
         <div className="flex items-center gap-2 w-full font-semibold not-italic">
           <Clock className="text-[#6B7280]" />

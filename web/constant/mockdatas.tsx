@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 export const BACKEND_ENDPOINT = "http://localhost:8000";
+=======
+export const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_API_KEY;
+>>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
 // export const BACKEND_ENDPOINT = process.env.API_KEY;
 
 export const FooterData = {

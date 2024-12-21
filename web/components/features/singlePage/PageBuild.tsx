@@ -1,7 +1,6 @@
 import { TPlaces } from "@/types/DataTypes";
 import { Order } from "./Order";
 import { SinglePageDetails } from "./SinglePageDetails";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,7 +13,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+>>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
 
 type TSinglePageProps = {
   place: TPlaces[] | [];
@@ -36,7 +38,11 @@ export const PageBuild = ({ place }: TSinglePageProps) => {
       {place.map((data) => {
         return (
           <div
+<<<<<<< HEAD
             className="container h-auto flex flex-col gap-16 bg-MainWhite rounded-2xl p-5 "
+=======
+            className="container h-[950px] flex flex-col gap-16 bg-MainWhite rounded-2xl p-5 "
+>>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
             key={data._id}
           >
             <div className="w-full h-[300px] flex  justify-between">
@@ -66,17 +72,28 @@ export const PageBuild = ({ place }: TSinglePageProps) => {
                 <PlaceMap key={data?._id} place={data} />
               </div>
             </div>
+<<<<<<< HEAD
             <div className="h-full w-full flex justify-between items-stretch">
               <div className="flex gap-5 h-[250px] justify-between items-stretch">
                 <div className="flex shadow-lg border rounded-lg">
                   <div className="w-[600px]">
+=======
+            <div className="h-full w-full flex justify-between gap-[100px] items-stretch">
+              <div className="flex gap-5 h-[250px] justify-between items-stretch">
+                <div className="flex h-[300px] shadow-lg border rounded-lg">
+                  <div className="w-full">
+>>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
                     <SinglePageDetails data={data} />
                   </div>
                   <div className="">
                     <TimeSchedule workingHours={data.workingHours} />
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="w-[600px]">
+=======
+                <div className="w-[500px]">
+>>>>>>> 9a184033085e19152e442274ec456e429b5ab6bf
                   <Order placeId={data._id} />
                 </div>
               </div>
