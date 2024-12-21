@@ -1,5 +1,4 @@
 "use client";
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TPlaces } from "@/types/DataTypes";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -18,7 +17,7 @@ export default function CategoryPage() {
     setLoader(true);
     try {
       const response = await fetch(
-        `${BACKEND_ENDPOINT}/api/selected?categorizedPlaces=${categoryName}`
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/selected?categorizedPlaces=${categoryName}`
       );
       const result = await response.json();
       setData(result.data);

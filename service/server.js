@@ -32,7 +32,7 @@ server.use("/api", categoryRouter);
 server.use("/api", userRouter);
 server.use("/api", placesRoute);
 server.use("/api", OrderRouter);
-server.post("/sendmail", sendMail);
+server.post("/api/sendmail", sendMail);
 server.use("/api", imageRoute);
 
 server.listen(Port, () => {

@@ -1,7 +1,6 @@
 "use client";
-import { Calendar } from "@/components/ui/calendar";
+
 import { Input } from "@/components/ui/input";
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -78,7 +77,10 @@ export const Order = ({ placeId }: { placeId: string }) => {
         body: JSON.stringify({ clerkId, stringDate, people, time, placeId }),
       };
       setIsLoading(true);
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/order`, options);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/order`,
+        options
+      );
       setIsLoading(false);
       if (response.status == 201) {
         toast(
