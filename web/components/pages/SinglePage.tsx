@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageBuild } from "../features/singlePage/PageBuild";
 import { Loader } from "../layout/Loader";
-
 export default function SinglePage() {
   const params = useParams<{ place: string }>();
   const [place, setPlace] = useState<TPlaces[]>([]);
@@ -21,6 +20,7 @@ export default function SinglePage() {
   }, []);
 
   const fetchPlaces = async () => {
+    console.log("BACKEND_POINT:", BACKEND_ENDPOINT);
     setLoading(true);
     try {
       const response = await fetch(`${BACKEND_ENDPOINT}/api/places`);

@@ -18,12 +18,10 @@ const createOrder = async (req, res) => {
       people: people,
     });
     if (result) {
-
       return res.status(201).json({
         success: true,
         data: result,
       });
-
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
