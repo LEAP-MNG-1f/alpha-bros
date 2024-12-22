@@ -31,3 +31,5 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY='pk_test_b3V0Z29pbmctdGFycG9uLTguY2xlcmsuYWNjb
 CLERK_SECRET_KEY='sk_test_7zcaxhfm6GhdENn7OjVpfX4sBKGgvJBiphPoO3geOW'
 
 ```
+
+ADMIN DEPLOYMENT: https://alpha-bros.vercel.app
