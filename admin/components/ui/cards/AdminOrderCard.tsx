@@ -226,11 +226,29 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Хүлээгдэж Байна" />
           </SelectTrigger>
+<<<<<<< Updated upstream
           <SelectContent>
             <SelectItem className="text-green-600" value="Батлагдсан">
               Батлагдсан
             </SelectItem>
             <SelectItem className="text-red-600" value="Цуцлагдсан">
+=======
+          <SelectContent defaultValue={progress}>
+            <SelectItem
+              className={`font-Poppins ${
+                progress == "Батлагдсан" ? "text-green-600 " : " "
+              } `}
+              value="Батлагдсан"
+            >
+              Батлагдсан
+            </SelectItem>
+            <SelectItem
+              className={`font-Poppins ${
+                progress == "Цуцлагдсан" ? "text-red-600" : ""
+              }  `}
+              value="Цуцлагдсан"
+            >
+>>>>>>> Stashed changes
               Цуцлагдсан
             </SelectItem>
           </SelectContent>
