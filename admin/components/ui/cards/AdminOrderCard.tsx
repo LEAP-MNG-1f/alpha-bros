@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
 
 interface Place {
   image: string[];
@@ -37,11 +38,11 @@ interface AdminOrderCardProps {
 }
 
 export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
-  const [process, setProcess] = useState(order.process);
+  const [progress, setProgress] = useState(order.process);
   const [isLoading, setIsLoading] = useState(false);
   const [newProcess, setNewProcess] = useState("Хүлээгдэж Байна");
-
-  const toSentMail = order.userId.emails;
+  const BACKEND_END_POINT = process.env.BACKEND_URL;
+  const toSentMail = order.userId.emails[0];
 
   const fetchProcessChange = async (newProcess: string) => {
     const orderId = order._id;
@@ -58,16 +59,38 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
       setIsLoading(true);
 
       const response = await fetch(`${BACKEND_END_POINT}/order`, option);
-
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || "Процессийг шинэчлэх үед алдаа гарлаа");
+      if (response.status == 200) {
+        toast("Амжилттай төлөв шинэчлэгдлээ", {
+          action: {
+            label: "Хаах",
+            onClick: () => {},
+          },
+        });
+        setProgress(data.process);
       }
-
-      setProcess(data.process);
+      if (response.status == 500) {
+        toast("Төлөвд өөрчлөгдөхөд алдаа гарлаа", {
+          description: `backend error: ${data.err}`,
+          action: {
+            label: "Хаах",
+            onClick: () => {},
+          },
+        });
+        setNewProcess(progress);
+        return;
+      }
     } catch (error) {
-      console.error("Error updating process:", error);
+      toast("Төлөвд өөрчлөгдөхөд алдаа гарлаа", {
+        description: `backend error: ${error}`,
+        action: {
+          label: "Хаах",
+          onClick: () => {},
+        },
+      });
+      setNewProcess(progress);
+      return;
     } finally {
       setIsLoading(false);
     }
@@ -83,9 +106,6 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
         mailText = "Таны захиалга амжилтгүй боллоо";
         break;
     }
-
-    console.log("retdwdferfertg");
-
     const optionEmail = {
       method: "POST",
       headers: {
@@ -96,17 +116,37 @@ export const AdminOrderCard: React.FC<AdminOrderCardProps> = ({ order }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/sendmail`,
+        `${BACKEND_END_POINT}/sendmail`,
         optionEmail
       );
-
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Процессийг шинэчлэх үед алдаа гарлаа");
+      if (response.status == 500) {
+        toast("Имэйл илгээхэд алдаа гарлаа", {
+          description: `backend error: ${data.err}`,
+          action: {
+            label: "Хаах",
+            onClick: () => {},
+          },
+        });
+        return;
+      }
+      if (response.status === 201) {
+        toast("Амжилттай имэйл илгээдлээ", {
+          action: {
+            label: "Хаах",
+            onClick: () => {},
+          },
+        });
+        return;
       }
     } catch (e) {
-      console.log(e);
+      toast("Имэйл илгээхэд алдаа гарлаа", {
+        description: `frontend error: ${e}`,
+        action: {
+          label: "Хаах",
+          onClick: () => {},
+        },
+      });
     }
   };
 

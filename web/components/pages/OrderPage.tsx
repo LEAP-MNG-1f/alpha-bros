@@ -7,7 +7,6 @@ import {
 } from "../features/orderpage";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { BACKEND_ENDPOINT } from "@/constant/mockdatas";
 import { TOrderType, TPlaces } from "@/types/DataTypes";
 import { Loader } from "../layout/Loader";
 
@@ -20,7 +19,7 @@ export default function OrderPage() {
   const fetchOrderData = async () => {
     try {
       const response = await fetch(
-        `${BACKEND_ENDPOINT}/api/userorder/${userId}`
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/userorder/${userId}`
       );
       const result = await response.json();
       setOrderData(result.data.OrderData);

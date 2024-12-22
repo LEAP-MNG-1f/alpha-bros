@@ -8,7 +8,6 @@ export const OrderInformation = ({
   orderData: TOrderType[];
 }) => {
   const reversedData = [...orderData].reverse();
-
   return (
     <div className="bg-MainWhite h-full rounded-xl p-6 shadow-2xl">
       <div className="w-full border-b p-2 mb-4 flex justify-between">

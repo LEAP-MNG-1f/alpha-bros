@@ -14,11 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  BACKEND_ENDPOINT,
-  categoryMockData,
-  districts,
-} from "@/constant/mockdatas";
+import { categoryMockData, districts } from "@/constant/mockdatas";
 import { TCategories } from "@/types/DataTypes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -34,7 +30,9 @@ export const Search = () => {
   // //////////////////////////////////////////////////////////
   const fetchCategory = async () => {
     try {
-      const response = await fetch(`${BACKEND_ENDPOINT}/api/category`);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_KEY}/api/category`
+      );
       const result = await response.json();
       setCategories(result.data);
     } catch (error) {

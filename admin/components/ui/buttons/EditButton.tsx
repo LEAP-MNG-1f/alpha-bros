@@ -584,10 +584,12 @@ export const EditButton = ({
                     {placeImages.length > 0 && (
                       <>
                         {placeImages.map((preview, index) => (
-                          <div className="relative w-[250px] h-[300px] flex-shrink-0">
+                          <div
+                            className="relative w-[250px] h-[300px] flex-shrink-0"
+                            key={`${index}${Date.now()}`}
+                          >
                             <Image
                               className="  border border-green-800 border-dashed "
-                              key={index}
                               src={preview.url}
                               alt={`Preview ${index + 1}`}
                               fill
@@ -629,16 +631,24 @@ export const EditButton = ({
                               }}
                               fill
                             />
-                            {savedImages.length > 1 && (
-                              <button
-                                type="button"
-                                onClick={async () => {
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                if (savedImages.length > 1) {
                                   await handleSavImageDel(preview);
-                                }}
-                              >
-                                <Trash2 className="text-red-800 top-5 right-5 z-20 absolute hover:backdrop-blur-sm" />
-                              </button>
-                            )}
+                                } else {
+                                  toast("Устгах боломжгүй", {
+                                    description: "1 зураг байна",
+                                    action: {
+                                      label: "Хаах",
+                                      onClick: () => {},
+                                    },
+                                  });
+                                }
+                              }}
+                            >
+                              <Trash2 className="text-red-800 top-5 right-5 z-20 absolute hover:backdrop-blur-sm" />
+                            </button>
                           </div>
                         ))}
                       </>
